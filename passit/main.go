@@ -25,21 +25,37 @@ func main() {
     defer cancel()
 
     // create secret
-	createSecret(ctx, client)
+    getSecret(ctx, client)
+	//createSecret(ctx, client)
 	
 }
 
 func createSecret(ctx context.Context, client proto.PassitClient) {
     request := &proto.CreateSecretRequest{
         Message: "secret encrypted",
-        OneTime: true,
-        Expiration: 3600,
+        OneTime: false,
+        Expiration: 2000,
     }
 
     // Make the request
     response, err := client.CreateSecret(ctx, request)
     if err != nil {
-        log.Fatalf("Failed to create payment intent: %v", err)
+        log.Fatalf("Fail: %v", err)
+    }
+
+    // Print the response
+    log.Printf("Response: %v", response)
+}
+
+func getSecret(ctx context.Context, client proto.PassitClient) {
+    request := &proto.GetSecretRequest{
+        Key: "f6b4af02-8611-4234-9b8f-f33671c67b83",
+    }
+
+    // Make the request
+    response, err := client.GetSecret(ctx, request)
+    if err != nil {
+        log.Fatalf("Fail: %v", err)
     }
 
     // Print the response

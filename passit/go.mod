@@ -3,7 +3,7 @@ module github.com/ncostamagna/grpc-client/passit
 go 1.25.0
 
 require (
-	github.com/ncostamagna/passit-proto/go/grpcPassit v0.0.1
+	github.com/ncostamagna/passit-proto/go/grpcPassit v0.0.2
 	google.golang.org/grpc v1.74.2
 )
 
